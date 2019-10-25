@@ -72,7 +72,12 @@
             uf:$("#uf").val() 
          };
          $.post("/editar.php", cidade, function(data) {
-             alert(data);
+             //alert(data);
+             document.getElementById($("#cod").val()).innerHTML=""
+             linha = 'Codigo da Cidade: '+$("#cod").val()+' Cidade: '+$("#nomeCidade").val()+' UF: '+$("#uf").val()+
+             '<button type="button" onclick="editar('+"'"+$("#cod").val()+"'"+','+"'"+$("#nomeCidade").val()+"'"+','+"'"+$("#uf").val()+"'"+')"class="btn btn-warning">Editar</button>';
+             
+             $('#'+$("#cod").val()).append(linha);
         });
      }
      $("#formCidade").submit( function(event){ 
