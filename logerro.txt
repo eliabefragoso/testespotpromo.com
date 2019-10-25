@@ -1,4 +1,0 @@
-erro: CAUGHT EXCEPTION no arquivo: C:\laragon\www\testespotpromo.com\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:25/10/19 03:14:04
-erro: CAUGHT EXCEPTION no arquivo: C:\laragon\www\testespotpromo.com\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:25/10/19 03:14:09
-erro: CAUGHT EXCEPTION no arquivo: C:\laragon\www\testespotpromo.com\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:25/10/19 03:14:30
-erro: CAUGHT EXCEPTION no arquivo: C:\laragon\www\testespotpromo.com\DB.class.php ( linha 6 ) :: IP(127.0.0.1) data:25/10/19 03:15:32
