@@ -1,5 +1,5 @@
 <?php 
-//$post = http_build_query($data);
+
 
 $curl = curl_init();
 
@@ -19,5 +19,18 @@ curl_setopt_array($curl, array(
 
 $response = curl_exec($curl);
 $err = curl_error($curl);
+
+include('DB.class.php');
+
+$cidades = json_decode($response);
+        $cidades = $cidades->{'CIDADES'}; 
+        foreach($cidades as $c){
+            $verificar = DB::getConn()->prepare("SELECT `cod` FROM `usuarios` WHERE `cod`=?");
+			$verificar->execute(array($c->{'codCidade'}))
+				if($verificar->rowCount()<1){
+                    $inserir = DB::getConn()->prepare("INSERT INTO `cidades` SET `cod`=?, `cidade`=?, `uf`=?");
+                    $inserir->execute(array($c->{'codCidade'},$c->{'cidade'},$c->{'uf'})); 
+                }
+        }    
 
 ?>
