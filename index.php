@@ -19,21 +19,34 @@
         foreach($cidades as $c){
             $cit = 'Codigo da Cidade: '.$c->{'codCidade'}.' Cidade: '.$c->{'cidade'}.' UF: '.$c->{'uf'};
             echo '<li class="list-group-item" id="'.$c->{'codCidade'}.'">'.$cit; ?>
-             <button type="button" onclick="editar('<?php echo $c->{'codCidade'}?>','<?php echo $c->{'cidade'}?>','<?php echo $c->{'cidade'}?>')"class="btn btn-warning">Editar</button></li>
+             <button type="button" onclick="editar('<?php echo $c->{'codCidade'}?>','<?php echo $c->{'cidade'}?>','<?php echo $c->{'uf'}?>')"class="btn btn-warning">Editar</button></li>
       <?php  } ?>
        
 
    
   </ul>
 </div>
-<div class="modal" tabindex="-1" role="dialog" id="dlgProdutos">
+<div class="modal" tabindex="-1" role="dialog" id="dlgcidade">
     <div class="modal-dialog" role="document"> 
         <div class="modal-content">
-            <form class="form-horizontal" id="formProduto" enctype="multipart/form-data">
+            <form class="form-horizontal" id="formCidade" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Novo produto</h5>
+                    <h5 class="modal-title">Editar Cidade</h5>
                 </div>
                 <div class="modal-body">
+                <div class="form-group">
+                <input type="hidden" value="" id="cod">   
+               <label for="NomeCidade" class="control-label">Nome Cidade</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="nomeCidade">
+                        </div>
+                    </div>
+                    <label for="UF" class="control-label">UF</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="uf">
+                        </div>
+                    </div>
+                
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Salvar</button>
@@ -46,16 +59,29 @@
 </body>
 <script type="text/javascript">
     function editar(codCidade,cidade,estado) {
-        $('#dlgProdutos').modal('show');
-         cidade = {
-            cod:codCidade,
-            cit:cidade,
-            uf:estado 
+        $("#cod").val(codCidade); 
+        $("#nomeCidade").val(cidade);
+        $("#uf").val(estado);
+        $('#dlgcidade').modal('show');       
+        
+     }
+     function salvar(){
+        cidade = {
+            cod:$("#cod").val(),
+            cit:$("#nomeCidade").val(),
+            uf:$("#uf").val() 
          };
          $.post("/editar.php", cidade, function(data) {
-            
+             alert(data);
         });
-
-     }  
+     }
+     $("#formCidade").submit( function(event){ 
+        event.preventDefault(); 
+        
+        salvar();    
+        $("#dlgcidade").modal('hide');
+    });
+    
+   
 </script>
 </html>
